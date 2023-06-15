@@ -17,3 +17,15 @@ const mapPolyfill = (arr, cb) => {
 const square = (x) => x * x;
 
 console.log(mapPolyfill(arr, square));
+
+// using Array.prototype
+
+Array.prototype.myMap = function (cb) {
+  const newArr = [];
+  for (let i = 0; i < this.length; i++) {
+    newArr.push(cb(this[i], i, this));
+  }
+  return newArr;
+};
+
+console.log(arr.myMap((num, i, arr) => num * num));
