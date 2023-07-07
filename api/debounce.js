@@ -6,20 +6,23 @@
 
 const debounce = (fn, delay, ...args) => {
   let timer;
+
   return function () {
     const context = this;
+
     clearTimeout(timer);
+
     timer = setTimeout(() => {
       fn.apply(context, args);
     }, delay);
   };
 };
 
-const getData = (str) => {
-  console.log("api call", str);
+const getData = (args) => {
+  console.log("api call", args);
 };
 
-const debounceAPICall = debounce(getData, 500, "String");
+const debounceAPICall = debounce(getData, 500, "arguments");
 
 window.addEventListener("scroll", debounceAPICall); // for scroll event
 window.addEventListener("click", debounceAPICall); // for button click
